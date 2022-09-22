@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "character420",
+    "database": "res2rant",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postres",
+    "password": "character420",
+    "database": "res2rant",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production":{
+    "username": "postgres",
+    "password": "character420",
+    "database": "res2rant",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
