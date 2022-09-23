@@ -1,23 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import { Column, Model, Table } from 'sequelize-typescript';
+import { ParseUUIDPipe } from '@nestjs/common';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { EnumDataType } from 'sequelize/types';
 
 @Table
 export class Restaurant extends Model<Restaurant> {
-  @Column
+  @Column(DataType.UUID)
+  userId: any;
 
-  userId: string;
-
-  @Column
+  @Column(DataType.STRING)
   name:string
 
-  @Column
+  @Column(DataType.STRING)
   address: string;
 
-  @Column
+  @Column(DataType.STRING)
   contact:string;
 
- // @Column
+  @Column(DataType.ENUM("owner","employee"))
   user_type:EnumDataType<any>
 
   

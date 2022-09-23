@@ -1,23 +1,23 @@
 /* eslint-disable prettier/prettier */
-import { Column, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { EnumDataType } from 'sequelize/types';
 
 @Table
 export class UserProfile extends Model<UserProfile> {
-  @Column
+  @Column(DataType.UUID)
 
-  userId: string;
+  userId: any;
 
-  @Column
+  @Column(DataType.STRING)
   name:string
 
-  @Column
+  @Column(DataType.STRING)
   address: string;
 
-  @Column
+  @Column(DataType.STRING)
   contact:string;
 
-  //@Column
+  @Column(DataType.ENUM("owner","employee"))
   user_type:EnumDataType<any>
 
   

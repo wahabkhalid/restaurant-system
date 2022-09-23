@@ -12,6 +12,7 @@ module.exports = {
     return queryInterface.createTable('Users',{
       id:{
         type: DataTypes.UUID,
+        defaultValue:DataTypes.UUIDV4,
       
       
         primaryKey: true,
@@ -36,7 +37,15 @@ module.exports = {
         type:Sequelize.BOOLEAN,
         allowNull:false,
         defaultValue:true
-      }
+      },
+      createdAt:{
+        type:Sequelize.DATE,
+        allowNull:false
+      },
+      updatedAt:{
+        type:Sequelize.DATE,
+        allowNull:false
+      },
 
     });
   },

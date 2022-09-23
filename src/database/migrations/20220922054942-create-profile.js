@@ -45,7 +45,16 @@ module.exports = {
       user_type:{
         type:Sequelize.ENUM('owner',"employee"),
         allowNull:false
-      }
+      },
+
+      createdAt:{
+        type:Sequelize.DATE,
+        allowNull:false
+      },
+      updatedAt:{
+        type:Sequelize.DATE,
+        allowNull:false
+      },
 
     });
   },

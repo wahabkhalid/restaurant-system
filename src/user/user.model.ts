@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import { Column, Model, Table } from 'sequelize-typescript';
+import { Column,DataType, Model, Table } from 'sequelize-typescript';
 import { DataTypes, EnumDataType } from 'sequelize/types';
 
 @Table
 export class User extends Model<User> {
-  @Column
+  @Column(DataType.STRING)
 
   email: string;
 
-  @Column
+  @Column(DataType.STRING)
   password: string;
 
-  //@Column
+  @Column(DataType.ENUM("owner","employee"))
   user_type:EnumDataType<any>;
 
-  @Column({ defaultValue: true })
+  @Column(DataType.BOOLEAN)
   isActive: boolean;
 }

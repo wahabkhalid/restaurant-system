@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import { Column, Model, Table } from 'sequelize-typescript';
-import { DataType, DataTypes, EnumDataType, Sequelize } from 'sequelize/types';
+import { Column, DataType, Model, Table,  } from 'sequelize-typescript';
+import { DataTypes, EnumDataType, Sequelize } from 'sequelize/types';
 
 
-@Table
+@Table({tableName: 'Menus'})
 export class Menu extends Model<Menu> {
-  @Column
+  @Column(DataType.STRING)
   item: string;
 
-  @Column
-  price: string;
+  @Column(DataType.INTEGER)
+  price: number;
 
-  //@Column
-  category:EnumDataType<any>;
+ @Column(DataType.ENUM("appitizer","pakistani","drinks","sweets"))
+  category: EnumDataType<string>
   
 }
