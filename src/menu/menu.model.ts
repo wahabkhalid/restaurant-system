@@ -1,12 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import { Column, DataType, Model, Table,  } from 'sequelize-typescript';
-import { DataTypes, EnumDataType, Sequelize } from 'sequelize/types';
+import { DataTypes, EnumDataType } from 'sequelize';
 
 
 @Table({tableName: 'Menus'})
 export class Menu extends Model<Menu> {
-  @Column(DataType.STRING)
+    @Column({
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      })
+      id:any;
+  
+    @Column(DataType.STRING)
   item: string;
 
   @Column(DataType.INTEGER)

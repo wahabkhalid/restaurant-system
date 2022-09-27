@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 import { Controller,UseGuards,Request,Post,Get, Put, Delete, Param,Body } from '@nestjs/common';
 import { UsersService } from './user.service';
-//import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard } from '@nestjs/passport';
 import { NotFoundException } from '@nestjs/common/exceptions';
 import { UserDto } from './user.dto';
 import { User } from './user.model';
@@ -10,16 +10,16 @@ import { User } from './user.model';
 export class UsersController {
     constructor(private userService: UsersService) {}
 
-    @Post('signup')
+   /* @Post('signup')
     async signUp(@Body() user: UserDto) {
         return await this.userService.create(user);
     }
-
-    //@UseGuards(AuthGuard('jwt'))
+*/
+    @UseGuards(AuthGuard('jwt'))
     @Put(':id')
-    async update(@Param('id') id: number, @Body() user: UserDto, @Request() req): Promise<User> {
+    async update(@Param('id') id: number, @Body() user: UserDto): Promise<User> {
         // get the number of row affected and the updated post
-        const { numberOfAffectedRows, updatedUser } = await this.userService.update(id, req.user.id);
+        const { numberOfAffectedRows, updatedUser } = await this.userService.update(id, user);
 
         // if the number of row affected is zero, 
         // it means the post doesn't exist in our db
@@ -31,7 +31,7 @@ export class UsersController {
         return updatedUser;
     }
 
-    //@UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @Delete(':id')
     async remove(@Param('id') id: number) {
         // delete the post with this id
@@ -50,8 +50,8 @@ export class UsersController {
     async findById(@Param('id') id:number) {
         return await this.userService.findOneById(id);
     }
-    @Get('findUser')
-    async findByEmail (@Body('email') email: string){
+    @Get(':email')
+    async findByEmail (@Param('email') email: any){
         console.log(email)
         return await this.userService.findOneByEmail(email);
     }

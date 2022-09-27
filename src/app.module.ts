@@ -13,6 +13,7 @@ import { MenuModule } from './menu/menu.module';
 import { Menu } from './menu/menu.model';
 import { OrderModule } from './order/order.module';
 import { Order } from './order/order.model';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -26,7 +27,7 @@ import { Order } from './order/order.model';
       database:'res2rant',
       models:[User,UserProfile,Restaurant,Menu,Order],
       autoLoadModels:true
-    }),UserModule, UserProfileModule, RestaurantModule, MenuModule, OrderModule,
+    }),AuthModule,UserModule, UserProfileModule, RestaurantModule, MenuModule, OrderModule
 
   ],
   controllers: [AppController],

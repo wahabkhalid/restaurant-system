@@ -2,11 +2,18 @@
 /* eslint-disable prettier/prettier */
 import { ParseUUIDPipe } from '@nestjs/common';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { EnumDataType } from 'sequelize/types';
+import { EnumDataType,DataTypes,Optional } from 'sequelize';
 
 @Table
 export class Restaurant extends Model<Restaurant> {
-  @Column(DataType.UUID)
+    @Column({
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      })
+      id:any;
+  
+    @Column(DataType.UUID)
   userId: any;
 
   @Column(DataType.STRING)
@@ -21,5 +28,5 @@ export class Restaurant extends Model<Restaurant> {
   @Column(DataType.ENUM("owner","employee"))
   user_type:EnumDataType<any>
 
-  
+ //name,address,contact,user_type 
 }
