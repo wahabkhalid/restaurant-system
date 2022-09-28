@@ -17,7 +17,7 @@ export class OrdersService {
   }
 
   async findOne(id: any) {
-    return await this.orderRepo.findOne<Order>(id)
+    return await this.orderRepo.findOne<Order>({where:{id}})
   }
 
   async update(id, data) {

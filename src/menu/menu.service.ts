@@ -19,7 +19,7 @@ export class MenuService {
   }
 
   async findOne(id: any) {
-    return await this.menuRepo.findOne<Menu>(id)
+    return await this.menuRepo.findOne<Menu>( {where: {id} } )
   }
 
   async update(id, data) {

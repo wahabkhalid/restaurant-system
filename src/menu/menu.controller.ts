@@ -22,7 +22,7 @@ export class MenuController {
   @UseGuards(AuthGuard('jwt')) 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.menuService.findOne(+id);
+    return this.menuService.findOne(id);
   }
   @UseGuards(AuthGuard('jwt')) 
   @Patch(':id')

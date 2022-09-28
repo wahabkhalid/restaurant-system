@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import { Module } from '@nestjs/common';
+import { Module ,CacheInterceptor,CacheModule} from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -14,10 +15,22 @@ import { Menu } from './menu/menu.model';
 import { OrderModule } from './order/order.module';
 import { Order } from './order/order.model';
 import { AuthModule } from './auth/auth.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import * as redisStore from 'cache-manager-redis-store';
 
 
 @Module({
   imports: [
+
+    CacheModule.register({
+      store:redisStore,
+      socket:{
+        host:'localhost',
+        port:6379,
+      },
+    }),
+
+
     SequelizeModule.forRoot({
       dialect:'postgres',
       host:'localhost',
@@ -31,6 +44,10 @@ import { AuthModule } from './auth/auth.module';
 
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers:[ {
+    provide:APP_INTERCEPTOR,
+    useClass:CacheInterceptor
+  },
+  AppService],
 })
 export class AppModule {}
