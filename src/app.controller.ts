@@ -18,7 +18,7 @@ export class AppController {
  }
  @Get('auto-caching')
    @CacheKey('cache-data')
-   @CacheTTL(0)
+   @CacheTTL(5)
    getAutoCaching(){
   return this.fakeModel;
  }

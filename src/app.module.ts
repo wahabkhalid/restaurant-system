@@ -16,6 +16,7 @@ import { OrderModule } from './order/order.module';
 import { Order } from './order/order.model';
 import { AuthModule } from './auth/auth.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { StripeModule } from './stripe/stripe.module';
 import * as redisStore from 'cache-manager-redis-store';
 
 
@@ -24,9 +25,11 @@ import * as redisStore from 'cache-manager-redis-store';
 
     CacheModule.register({
       store:redisStore,
+      isGlobal:true,
       socket:{
         host:'localhost',
         port:6379,
+      
       },
     }),
 
@@ -39,8 +42,9 @@ import * as redisStore from 'cache-manager-redis-store';
       password:'character420',
       database:'res2rant',
       models:[User,UserProfile,Restaurant,Menu,Order],
-      autoLoadModels:true
-    }),AuthModule,UserModule, UserProfileModule, RestaurantModule, MenuModule, OrderModule
+      autoLoadModels:true,
+    
+    }),AuthModule,UserModule, UserProfileModule, RestaurantModule, MenuModule, OrderModule, StripeModule
 
   ],
   controllers: [AppController],
