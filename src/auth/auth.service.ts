@@ -38,6 +38,7 @@ export class AuthService {
 
         // create the user
         console.log(user);
+        console.log('user create function calling!!')
         const newUser = await this.userService.create({ ...user, password: pass });
 
         // tslint:disable-next-line: no-string-literal
