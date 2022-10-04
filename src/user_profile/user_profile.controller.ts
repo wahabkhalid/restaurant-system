@@ -24,7 +24,7 @@ export class UsersProfileController {
 
     @Post('/createprofile')
     @ApiBearerAuth('JWT-auth')
-    @CacheKey('CreateProfile')
+    //@CacheKey('CreateProfile')
     async createprofile(@Body() userProfile: UserProfileDto) {
         return await this.userProfileService.create(userProfile);
     }
